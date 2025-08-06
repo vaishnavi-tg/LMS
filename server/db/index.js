@@ -3,12 +3,13 @@ import { config } from "dotenv";
 
 config()
 
-const dbConnect = () => {
+const dbConnect = async () => {
     try {
-        mongoose.connect(process.env.MONGO_URI)
+        await mongoose.connect(process.env.MONGO_URI)
         console.log("Connected to LMS DB")
     } catch (error) {
         console.log(error)
+        process.exit(1)
     }
 }
 
