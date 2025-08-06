@@ -1,15 +1,24 @@
 import express from "express"
-import {config} from "dotenv"
+import { config } from "dotenv"
+import cookieParser from "cookie-parser"
+import cors from "cors"
 
 config()
 
 const app = express()
 
-    try {
-        app.listen(process.env.PORT)
-        console.log(`App listening on port ${process.env.PORT}`)
-    } catch (error) {
-        console.log(error)
-    }
+app.use(express.json())
+app.use(cors({
+    origin: [process.env.FRONTEND_URL],
+    Credentials: true
+}))
+app.use(cookieParser())
+
+try {
+    app.listen(process.env.PORT)
+    console.log(`App listening on port ${process.env.PORT}`)
+} catch (error) {
+    console.log(error)
+}
 
 export default app
