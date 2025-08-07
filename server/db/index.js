@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import { config } from "dotenv";
 
+mongoose.set("strictQuery",false)
+
 config()
 
 const dbConnect = async () => {
